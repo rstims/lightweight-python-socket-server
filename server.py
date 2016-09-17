@@ -1,6 +1,6 @@
-import socket, imp, json, base64, sys
+import socket, imp, json
 while 1:
-	# Create and open the socket will be listening on
+	# Create and open the port the socket will be listening on
 	server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 	server_socket.bind(("127.0.0.1", 8008))
@@ -17,7 +17,8 @@ while 1:
 	
 	# Load python file depending on file passed in buffer
 	modl = imp.load_source('tmp', args['path'])	
-	# Fun function named main() with passed args from buffer
+	
+	# Find function named main() and pass it args from buffer
 	out = modl.main(args['args'])
 	
 	# Send response back to requester
