@@ -22,7 +22,7 @@ while 1:
 	out = modl.main(args['args'])
 	
 	# Send response back to requester
-	client_socket.send(out)		
+	client_socket.sendall(out)		
 	
 	# Close connection
 	client_socket.close()
